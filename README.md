@@ -43,7 +43,7 @@ A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances
 
 然后，你需要绑定IP到你的实例，勾选你的IP，右上角操作-关联弹性 IP 地址，资源类型选择 实例，从实例的下拉列表里关联上你的实例。  
 
-![image](https://user-images.githubusercontent.com/48174333/116273080-07b22780-a7b4-11eb-9ca1-7ac0852c648c.png)
+
 
 之后，就可以通过命令提示符输入  
 `ssh -i D:\Documents\key.pem ubuntu@18.x.y.z`  
