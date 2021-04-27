@@ -1,6 +1,6 @@
 # VPN_Tutorial
 A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances  
-一篇包含如何设置自己的VPN/VPS的教程，可以用来科学上网，12个月免费使用，基本完全免费。  
+一篇非常详细，包含如何设置自己的VPN/VPS的教程，可以用来科学上网，12个月免费使用，基本完全免费。  
 核心思想是设置/拥有一台能够无限制访问外网的机器（云主机/云服务器），这台机器作为中间节点，接受你本地机的流量，然后转发给目标网站/目标服务器。  
 目标服务器收到请求后，将请求内容返回给中间节点，然后中间节点再转发给本地机   
 最好有一点点linux基础知识，比如`cd`,`ls`命令，和一点计算机网络方面的知识。    
@@ -27,6 +27,7 @@ A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances
 香港区控制台地址`https://ap-east-1.console.aws.amazon.com/ec2/v2/home?region=ap-east-1#Instances:`  
 
 ## 安全组设置
+安全组本质是防火墙规则。简单来说，就是允许 来自哪的IP，访问实例的哪个端口 的数据包通过。
 控制台左侧，点击网络与安全-安全组，点击launch-wizard-1对应的安全组ID，编辑入站规则，如下图所示。  
 ![image](https://user-images.githubusercontent.com/48174333/116269174-8e650580-a7b0-11eb-887e-59187a949fa8.png)
 
@@ -42,10 +43,28 @@ A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances
 ![image](https://user-images.githubusercontent.com/48174333/116273080-07b22780-a7b4-11eb-9ca1-7ac0852c648c.png)
 
 之后，就可以通过命令提示符输入  
-`ssh -i D:\Documents\key.pem ubuntu@18.x.y.z`
+`ssh -i D:\Documents\key.pem ubuntu@18.x.y.z`  
 D:\Documents\key.pem 换成你的密钥文件的绝对路径，18.x.y.z替换成你的实例公网IP。  
 这样你就成功进入了实例的操作界面。
 ![image](https://user-images.githubusercontent.com/48174333/116275794-80b27e80-a7b6-11eb-9fd1-adc853c2ca08.png)
+
+## 部署Shadowsocks服务端
+在云主机中执行命令  
+`sudo su
+wget --no-check-certificate https://raw.githubusercontent.com/ShadowsocksR-Live/shadowsocksr-native/master/install/ssrn-install.sh
+chmod +x ssrn-install.sh
+./ssrn-install.sh 2>&1 | tee ssr-n.log`
+
+安装完成后，会进行初次使用的服务器配置。
+1. Server Port 服务器端口 可以任意指定，但是不要与系统服务和常用软件的端口冲突，推荐10000以后；  
+2. Password 密码 可以任意指定，自己记住；  
+3. Encryption Method 加密方法 可以任意指定，推荐安全性高的AEAD类方法，比如chacha20-ietf；  
+4. Protocol 协议 选 origin；  
+5. obfs 混淆器 选 plain；  
+
+接下来在本地机配置ShadowsocksR客户端。总体来说大同小异，客户端设置里，服务器IP填写实例IP，远程端口/加密方法与自己设的保持一致。之后就可以尽情享受了。
+
+
 
 
 实测上下行速度，跑满家用百兆宽带十分轻松。  
