@@ -1,5 +1,5 @@
 # VPN_Tutorial
-A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances  
+A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances. for English version, You can use Google translate.  
 一篇非常详细，包含如何设置自己的VPN/VPS的教程，可以用来科学上网，12个月免费使用，基本完全免费。  
 核心思想是设置/拥有一台能够无限制访问外网的机器（云主机/云服务器），这台机器作为中间节点，接受你本地机的流量，然后转发给目标网站/目标服务器。  
 目标服务器收到请求后，将请求内容返回给中间节点，然后中间节点再转发给本地机   
@@ -66,9 +66,12 @@ chmod +x ssrn-install.sh
 4. Protocol 协议 选 origin；  
 5. obfs 混淆器 选 plain；  
 
+
+
 接下来在本地机配置ShadowsocksR客户端。总体来说大同小异，客户端设置里，服务器IP填写实例IP，远程端口/加密方法与自己设的保持一致。之后就可以尽情享受了。  
 如果节点突然失效，首先试试能不能ping通自己的服务器，如果ping不通，自己可以访问国内网站，大概率IP被Ban了，可以考虑更换弹性IP，Amazon换IP是免费的。  
 除非AWS彻底被墙，这样的私人VPS稳定性和速度都是最好的，也不用担心机场跑路的问题，基本上可以白嫖12个月，之后每小时约花费0.1元，一个月70元左右（随汇率波动）。不想花钱可以创建新账号，继续白嫖。  
 实测上下行速度，跑满家用百兆宽带十分轻松。  
+
 ![image](https://user-images.githubusercontent.com/48174333/116256439-c581e980-a7a5-11eb-909a-30112ba3668f.png)
 
