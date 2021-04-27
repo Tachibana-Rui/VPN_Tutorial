@@ -29,6 +29,7 @@ A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances
 ## 安全组设置
 安全组本质是防火墙规则。简单来说，就是允许 来自哪的IP，访问实例的哪个端口 的数据包通过。
 控制台左侧，点击网络与安全-安全组，点击launch-wizard-1对应的安全组ID，编辑入站规则，如下图所示。  
+
 ![image](https://user-images.githubusercontent.com/48174333/116269174-8e650580-a7b0-11eb-887e-59187a949fa8.png)
 
 当然，你也可以只选择开放你需要的端口，除了SSH的22端口都不是必须的（当然得额外开放一个用于科学上网的端口）。我是为了图省事开放了8000-18000的端口，便于之后除了科学上网，还可以用于各种Linux项目练习。  
@@ -37,15 +38,18 @@ A tutorial includes how to set up YOUR OWN VPN/VPS via Amazon EC2 instances
 弹性IP就是公网IP，你需要从AWS香港的IP池里选一个，与自己的实例绑定，便于外部访问。  
 因为默认提示的SSH访问方式给的是一个公共域名，根据你的Key文件登录对应的实例，这没法用在ShadowsocksR里，所以需要一个公网IP作为你的服务器地址。  
 控制台左侧，点击网络与安全-弹性IP，右上角分配弹性IP地址，从AWS香港的IP池里抽一个，点击分配，这样你就得到了一个公网IP。  
+
 ![image](https://user-images.githubusercontent.com/48174333/116273319-3c25e380-a7b4-11eb-9e31-6f20a356815e.png)
 
 然后，你需要绑定IP到你的实例，勾选你的IP，右上角操作-关联弹性 IP 地址，资源类型选择 实例，从实例的下拉列表里关联上你的实例。  
+
 ![image](https://user-images.githubusercontent.com/48174333/116273080-07b22780-a7b4-11eb-9ca1-7ac0852c648c.png)
 
 之后，就可以通过命令提示符输入  
 `ssh -i D:\Documents\key.pem ubuntu@18.x.y.z`  
 D:\Documents\key.pem 换成你的密钥文件的绝对路径，18.x.y.z替换成你的实例公网IP。  
 这样你就成功进入了实例的操作界面。  
+
 ![image](https://user-images.githubusercontent.com/48174333/116275794-80b27e80-a7b6-11eb-9fd1-adc853c2ca08.png)
 
 ## 部署Shadowsocks服务端
