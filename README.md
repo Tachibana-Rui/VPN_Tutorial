@@ -54,10 +54,10 @@ D:\Documents\key.pem 换成你的密钥文件的绝对路径，18.x.y.z替换成
 
 ## 部署Shadowsocks服务端
 在云主机中执行命令  
-`sudo su`
-`wget --no-check-certificate https://raw.githubusercontent.com/ShadowsocksR-Live/shadowsocksr-native/master/install/ssrn-install.sh`
-`chmod +x ssrn-install.sh`
-`./ssrn-install.sh 2>&1 | tee ssr-n.log`
+`sudo su`  
+`wget --no-check-certificate https://raw.githubusercontent.com/ShadowsocksR-Live/shadowsocksr-native/master/install/ssrn-install.sh`  
+`chmod +x ssrn-install.sh`  
+`./ssrn-install.sh 2>&1 | tee ssr-n.log`  
 
 安装完成后，会进行初次使用的服务器配置。
 1. Server Port 服务器端口 可以任意指定，但是不要与系统服务和常用软件的端口冲突，推荐10000以后；  
